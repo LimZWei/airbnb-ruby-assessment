@@ -1,5 +1,8 @@
-<h3><%= @property.address %></h3>
+<h3><%= @property.address %> by <%=@property.user.email%></h3>
 <% current_user %>
+<form method="get" action="/users/dashboard">
+	<button type="submit">Home</button>
+</form>
 
 <% if current_user.id == @property.user.id %>
 	<form method="post" action="/properties/<%=@property.id%>/<%=current_user.id%>/update">
@@ -24,3 +27,25 @@
 	</form>
 
 <%end%>
+
+<form method="post" action="/properties/<%=@property.id%>/comments">
+		<input type="text" placeholder="Write a comment" name="comment">
+		<input type="submit" value="Comment">
+</form>
+
+
+<p><% @property.comments.all.each do |c| %>
+	<p><%=c.comment %></p>
+	<div><% if current_user.id == c.user.id %>
+		<form method="post" action="/comments/<%=c.id%>/update">
+			<input type="text" value="<%=c.comment%>" name="comment"><br>
+			<input type="submit" value="Update">
+		</form>
+
+		<form method="post" action="/comments/<%=c.id%>/delete">
+			<input type="submit" value="Delete">
+		</form><br>
+	</div>
+	<%end%>
+
+<%end%></p><br>

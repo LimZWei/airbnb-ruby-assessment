@@ -1,14 +1,20 @@
+<form method="get" action="/users/dashboard">
+	<button type="submit">Home</button>
+</form>
+
+
 <h1> My properties </h1>
 <% current_user.properties.all.each do |p| %>
 	<p><a href="http://localhost:9393/properties/<%= p.id %>"><%= p.address %></a></p><br>
 <%end%>
 
 <h1> My bookings </h1>
-<% @bookings.each do |abc| %>
+<% current_user.bookings.each do |abc| %>
 	
 	<p>Address: <%= abc.property.address %></p>
 	<p>From: <%= abc.from %></p>
 	<p>To: <%= abc.to %></p>
+
 	<form method="post" action="/users/<%=current_user.id%>/<%=abc.id%>/update">
 		<input type="text" placeholder="yyyy-mm-dd (From)" name="from">
 		<input type="text" placeholder="yyyy-mm-dd (To)" name="to">
