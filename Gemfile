@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-
+gem 'byebug'
 # Ruby Version
 # ruby "2.2.1"
-
+gem 'bcrypt'
 # Adding Sinatra Drivers
 gem 'sinatra'
 gem 'sinatra-contrib'

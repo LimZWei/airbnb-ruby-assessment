@@ -1,0 +1,35 @@
+<h3>You are logged in as <%= @current_user.email%></h3>
+	<div class="row">
+	<form  class="col-md-4 col-md-offset-10" method="post" action="/logout">
+		<input class="btn btn-default col-xs-6 col-md-4" type="submit" value="Log out">
+	</form>
+	</div>
+
+	<form method="get" action="/properties">
+		<button type="submit">Become a Host</button>
+	</form>
+
+	<form method="get" action="/users/<%=@current_user.id%>">
+		<input type="submit" value="My profile">
+	</form>
+
+	<table class="table table-striped" >
+		<thead>
+			<tr>
+				<th></th>
+				<th>Properties</th>
+			</tr>
+	
+		</thead>
+		<tbody>
+
+			<%Property.all.each do |p| %>
+					<tr>
+						<th><%= p.id %></th>
+						<th><a href="http://localhost:9393/properties/<%= p.id %>"><%= p.address %></a>
+						<br><small>Contact <%=p.user.email%></small></th>
+					</tr>
+			<% end %>
+							
+		</tbody>
+</table>

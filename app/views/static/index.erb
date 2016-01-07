@@ -1,2 +1,16 @@
+<%unless @error.nil? %>
+	<%= @error%>
+	<%end%>
+	
 <h1>Hello World</h1>
 <p>See Me in views/static/index.html.erb</p>
+
+<form method="get" action="/signup">
+	<button type="submit">Sign up</button>
+</form>
+
+<form method="post" action="/login">
+	<input type="text" placeholder="Email" name="user[email]"><br>
+	<input type="password" placeholder="Password" name="user[password]"></br>
+	<input type="submit" value="Log in">
+</form>

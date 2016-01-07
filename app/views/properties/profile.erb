@@ -1,0 +1,26 @@
+<h3><%= @property.address %></h3>
+<% current_user %>
+
+<% if current_user.id == @property.user.id %>
+	<form method="post" action="/properties/<%=@property.id%>/<%=current_user.id%>/update">
+		<input type="text" placeholder="Address" name="property[address]"><br>
+		<input type="text" placeholder="Type of house" name="property[category]"></br>
+		<input type="integer" placeholder="Maximum number of guests" name="property[number_of_guests]"><br>
+		<input type="integer" placeholder="Number of bathrooms" name="property[number_of_bathrooms]"><br>
+		<input type="submit" value="Update">
+	</form>
+
+	<form method="post" action="/properties/<%=@property.id%>/<%=current_user.id%>/delete">
+		<input type="submit" value="Delete">
+	</form>
+<%end%>
+
+<% if current_user.id != @property.user.id %>
+
+	<form method="post" action="/properties/<%=@property.id%>/booking">
+		<input type="text" placeholder="yyyy-mm-dd (From)" name="from">
+		<input type="text" placeholder="yyyy-mm-dd (To)" name="to">
+		<input type="submit" value="Book">
+	</form>
+
+<%end%>
